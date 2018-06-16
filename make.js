@@ -114,32 +114,30 @@ function generate() {
     db.get("cards")
     .push({
         name: "Sawbonez",
-        gen1: [
-            {primary: "SM", secondary: 7, melee: 2},
-            {primary: "SM", secondary: 8, melee: 2},
-            {primary: "SM", secondary: 4, melee: 1},
+        cards: [
+            {primary: "SM", secondary: 7, melee: 2, gen: 1},
+            {primary: "SM", secondary: 8, melee: 2, gen: 1},
+            {primary: "SM", secondary: 4, melee: 1, gen: 1},
 
-            {primary: "CR", secondary: 7, melee: 3},
-            {primary: "CR", secondary: 4, melee: 2},
-            {primary: "CR", secondary: 8, melee: 1},
+            {primary: "CR", secondary: 7, melee: 3, gen: 1},
+            {primary: "CR", secondary: 4, melee: 2, gen: 1},
+            {primary: "CR", secondary: 8, melee: 1, gen: 1},
 
-            {primary: "BL", secondary: 7, melee: 1},
-            {primary: "BL", secondary: 4, melee: 3},
-            {primary: "BL", secondary: 8, melee: 2}
-            
-        ],
-        gen2: [
-            {primary: "SM", secondary: 7, melee: 2},
-            {primary: "SM", secondary: 8, melee: 3},
-            {primary: "SM", secondary: 4, melee: 1},
+            {primary: "BL", secondary: 7, melee: 1, gen: 1},
+            {primary: "BL", secondary: 4, melee: 3, gen: 1},
+            {primary: "BL", secondary: 8, melee: 2, gen: 1},
 
-            {primary: "CR", secondary: 7, melee: 3},
-            {primary: "CR", secondary: 4, melee: 2},
-            {primary: "CR", secondary: 8, melee: 1},
+            {primary: "SM", secondary: 7, melee: 2, gen: 2},
+            {primary: "SM", secondary: 8, melee: 3, gen: 2},
+            {primary: "SM", secondary: 4, melee: 1, gen: 2},
 
-            {primary: "BL", secondary: 7, melee: 1},
-            {primary: "BL", secondary: 4, melee: 3},
-            {primary: "BL", secondary: 8, melee: 2}
+            {primary: "CR", secondary: 7, melee: 3, gen: 2},
+            {primary: "CR", secondary: 4, melee: 2, gen: 2},
+            {primary: "CR", secondary: 8, melee: 1, gen: 2},
+
+            {primary: "BL", secondary: 7, melee: 1, gen: 2},
+            {primary: "BL", secondary: 4, melee: 3, gen: 2},
+            {primary: "BL", secondary: 8, melee: 2, gen: 2}
         ]
     })
     .write();

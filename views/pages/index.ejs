@@ -9,19 +9,59 @@
 
         <div class="container-fluid">
             <div class="row">
-              <div class="col-sm-3">
-                <h3>Column 1</h3>
-                <p>Lorem ipsum dolor..</p>
-                <p>Ut enim ad..</p>
+              <div class="col-sm-2">
+                <h3>Filters</h3>
+                <form method="post" action="/weapon_search">
+                  
+                  <h4>Gun</h4>
+                  <input type="radio" name="gun" value="any"> Any<br>
+                  <input type="radio" name="gun" value="CR"> Crotzni<br>
+                  <input type="radio" name="gun" value="SM"> SMG-9<br>
+                  <input type="radio" name="gun" value="BL"> Blishlok
+                  
+                  <input type="submit" value="Search">
+                </form>
               </div>
-              <div class="col-sm-9">
-                <h3>Column 2</h3>
-                <p>Lorem ipsum dolor..</p>
-                <p>Ut enim ad..</p>
+
+              <div class="col-sm-10">
+                <h3>Search results</h3>
+                
+                <% if (typeof data !== 'undefined') {%>
+                  
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope = "col">#</th>
+                        <th scope="col">Generation</th>
+                        <th scope="col">Card code</th>
+                        <th scope="col">Primary weapon</th>
+                        <th scope="col">Secondary weapon</th>
+                        <th scope="col">Melee weapon</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% for (var i = 0; i < data.length; i++) { %>
+                      <tr>
+                        <th scope="row"> <%= i+1 %> </th>
+                        <td><%= data[i].gen %></td>
+                        <td> <%= data[i].primary + data[i].secondary + data[i].melee %> </td>
+                        <td> <%= data[i].primary %> </td>
+                        <td> <%= data[i].secondary %> </td>
+                        <td> <%= data[i].melee %> </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+
+
+
+                <% } %>
               </div>
             </div>
           </div>
 
-
+    <br>
+    <input type="image" src="https://cdn.discordapp.com/attachments/122446271804997634/457639888888528896/big_cube.png" />
     </body>
 </html>
