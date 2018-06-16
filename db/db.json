@@ -1,0 +1,240 @@
+{
+  "meleeWeapons": [
+    "Beckhill Combat Knife",
+    "Stilnotto Stiletto",
+    "Cricket Bat",
+    "Katana",
+    "Kukri",
+    "Tactical Combat Axe",
+    "Stun Batons",
+    "Ulu"
+  ],
+  "primaryWeapons": [
+    {
+      "name": "Hurtsall 2K",
+      "id": "HU",
+      "type": 0
+    },
+    {
+      "name": "M4A1",
+      "id": "M",
+      "type": 0
+    },
+    {
+      "name": "SHAR-C",
+      "id": "SH",
+      "type": 0
+    },
+    {
+      "name": "Timik-47",
+      "id": "T",
+      "type": 0
+    },
+    {
+      "name": "K-121",
+      "id": "K",
+      "type": 1
+    },
+    {
+      "name": "MK46",
+      "id": "MA",
+      "type": 1
+    },
+    {
+      "name": "BR-16",
+      "id": "B",
+      "type": 2
+    },
+    {
+      "name": "Stark AR",
+      "id": "S",
+      "type": 2
+    },
+    {
+      "name": "Blishlok",
+      "id": "BL",
+      "type": 3
+    },
+    {
+      "name": "Crotzni",
+      "id": "CR",
+      "type": 3
+    },
+    {
+      "name": "Hochfir",
+      "id": "KE",
+      "type": 3
+    },
+    {
+      "name": "KEK-10",
+      "id": "C",
+      "type": 3
+    },
+    {
+      "name": "SMG-9",
+      "id": "SM",
+      "type": 3
+    },
+    {
+      "name": "Ahnuhld-12",
+      "id": "A",
+      "type": 4
+    },
+    {
+      "name": "Hollunds 880",
+      "id": "H",
+      "type": 4
+    },
+    {
+      "name": "Remburg 7",
+      "id": "R",
+      "type": 4
+    },
+    {
+      "name": "Dreiss AR",
+      "id": "D",
+      "type": 5
+    },
+    {
+      "name": "Grandeur SR",
+      "id": "G",
+      "type": 5
+    },
+    {
+      "name": "PDP-70",
+      "id": "P",
+      "type": 5
+    },
+    {
+      "name": "MOA SNPR-1",
+      "id": "MO",
+      "type": 5
+    },
+    {
+      "name": "Fel-ix",
+      "id": "F",
+      "type": 5
+    }
+  ],
+  "secondaryWeapons": [
+    "MP400",
+    "Tolen MP",
+    "Empire-9",
+    "Ryburn MP",
+    "M9",
+    "DE .50",
+    "Simeon .357",
+    "Caulden",
+    "Selbstadt .40",
+    "Smjüth & Whetsman .40",
+    "Hoigat .224",
+    "Arevarov 9"
+  ],
+  "weaponTypes": [
+    "Assault Rifle",
+    "LMG",
+    "Burst Rifle",
+    "SMG",
+    "Shotgun",
+    "Rifle & Sniper"
+  ],
+  "cards": [
+    {
+      "name": "Sawbonez",
+      "gen1": [
+        {
+          "primary": "SM",
+          "secondary": 7,
+          "melee": 2
+        },
+        {
+          "primary": "SM",
+          "secondary": 8,
+          "melee": 2
+        },
+        {
+          "primary": "SM",
+          "secondary": 4,
+          "melee": 1
+        },
+        {
+          "primary": "CR",
+          "secondary": 7,
+          "melee": 3
+        },
+        {
+          "primary": "CR",
+          "secondary": 4,
+          "melee": 2
+        },
+        {
+          "primary": "CR",
+          "secondary": 8,
+          "melee": 1
+        },
+        {
+          "primary": "BL",
+          "secondary": 7,
+          "melee": 1
+        },
+        {
+          "primary": "BL",
+          "secondary": 4,
+          "melee": 3
+        },
+        {
+          "primary": "BL",
+          "secondary": 8,
+          "melee": 2
+        }
+      ],
+      "gen2": [
+        {
+          "primary": "SM",
+          "secondary": 7,
+          "melee": 2
+        },
+        {
+          "primary": "SM",
+          "secondary": 8,
+          "melee": 3
+        },
+        {
+          "primary": "SM",
+          "secondary": 4,
+          "melee": 1
+        },
+        {
+          "primary": "CR",
+          "secondary": 7,
+          "melee": 3
+        },
+        {
+          "primary": "CR",
+          "secondary": 4,
+          "melee": 2
+        },
+        {
+          "primary": "CR",
+          "secondary": 8,
+          "melee": 1
+        },
+        {
+          "primary": "BL",
+          "secondary": 7,
+          "melee": 1
+        },
+        {
+          "primary": "BL",
+          "secondary": 4,
+          "melee": 3
+        },
+        {
+          "primary": "BL",
+          "secondary": 8,
+          "melee": 2
+        }
+      ]
+    }
+  ]
+}

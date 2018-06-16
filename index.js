@@ -15,5 +15,5 @@ app.get('/', function (req, res) {
 })
 
 app.listen(PORT, function () {
-  console.log('App unning on port ' + PORT)
+  console.log('App running on port ' + PORT)
 })
