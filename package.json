@@ -1,0 +1,19 @@
+{
+  "name": "deebee-db",
+  "version": "1.0.0",
+  "description": "A web app for sorting through dirty bomb's data",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DistressedWhale/deebee-db.git"
+  },
+  "author": "Sehwah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DistressedWhale/deebee-db/issues"
+  },
+  "homepage": "https://github.com/DistressedWhale/deebee-db#readme"
+}
