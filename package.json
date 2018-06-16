@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DistressedWhale/deebee-db/issues"
   },
-  "homepage": "https://github.com/DistressedWhale/deebee-db#readme"
+  "homepage": "https://github.com/DistressedWhale/deebee-db#readme",
+  "dependencies": {
+    "ejs": "^2.6.1"
+  }
 }
