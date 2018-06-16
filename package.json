@@ -4,7 +4,8 @@
   "description": "A web app for sorting through dirty bomb's data",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
