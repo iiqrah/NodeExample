@@ -6,10 +6,8 @@ const PORT = process.env.PORT || 5000
 const path = require('path')
 const bodyParser = require('body-parser')
 
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
-const adapter = new FileSync('db/db.json')
-const db = low(adapter)
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('db/dev.db');
 
 app
 .use(express.static(path.join(__dirname, 'public')))
@@ -23,26 +21,36 @@ app.get('/', function (req, res) {
 })
 
 app.post('/weapon_search', function (req,res) {
-  var cards = 
-  db.get('cards[0]')
-  .value();
-
-  console.log(cards);
+  var statement = ""
+  var results = []
 
   if (req.body.gun === "any") {
-    var output = cards.cards;
+    statement = 
+    'SELECT Slot2, SecondaryWeapons.WeaponName, WeaponID FROM ' + 
+    'Cards ' +
+    'INNER JOIN SecondaryWeapons ON Cards.Slot2 = SecondaryWeapons.WeaponID' +
+    // '' +
+    // '' +
+    // '' +q
+    ';'
   } else {
-    var output = []
-    for (var i = 0; i < cards.cards.length; i++) {
-      if (cards.cards[i].primary === req.body.gun) {
-        output.push(cards.cards[i])
-      }
-    }
+    statement = 'SELECT * FROM Cards WHERE Slot1 == \"' + req.body.gun + "\";"
   }
 
-  console.log(output);
+  console.log("Statement: " + statement)
 
-  res.render('pages/index', {data: output});
+  db.each(statement, function (err, row) {
+    if (err) {
+      console.log("Error: " + err)
+    } else {
+      console.log(row)
+      results.push(row)
+    }
+  }, function (err, row) {
+    console.log("Complete. Results: " + results)
+    res.render('pages/index', {data: results});
+  })
+   
 })
 
 app.listen(PORT, function () {
