@@ -26,16 +26,29 @@ app.post('/weapon_search', function (req,res) {
 
   if (req.body.gun === "any") {
     statement = 
-    'SELECT PrimaryWeapons.WeaponName, SecondaryWeapons.WeaponName, WeaponID FROM ' + 
-    'Cards ' +
-    'INNER JOIN PrimaryWeapons ON Cards.Slot1 = PrimaryWeapons.WeaponID' +
-    'INNER JOIN SecondaryWeapons ON Cards.Slot2 = SecondaryWeapons.WeaponID' +
-    // '' +
-    // '' +
-    // '' +q
+    'SELECT ' +
+      'PrimaryWeapons.WeaponName AS PrimaryName, ' + 
+      'SecondaryWeapons.WeaponName AS SecondaryName, ' +
+      'MeleeWeapons.WeaponName AS MeleeName, ' +
+      'Cards.Slot1, Cards.Slot2, Cards.Slot3, Cards.Generation ' +
+    'FROM Cards ' +
+      'INNER JOIN PrimaryWeapons ON Cards.Slot1 = PrimaryWeapons.WeaponID ' +
+      'INNER JOIN SecondaryWeapons ON Cards.Slot2 = SecondaryWeapons.WeaponID ' +
+      'INNER JOIN MeleeWeapons ON Cards.Slot3 = MeleeWeapons.WeaponID' +
     ';'
   } else {
-    statement = 'SELECT * FROM Cards WHERE Slot1 == \"' + req.body.gun + "\";"
+    statement = 
+    'SELECT ' +
+      'PrimaryWeapons.WeaponName AS PrimaryName, ' + 
+      'SecondaryWeapons.WeaponName AS SecondaryName, ' +
+      'MeleeWeapons.WeaponName AS MeleeName, ' +
+      'Cards.Slot1, Cards.Slot2, Cards.Slot3, Cards.Generation ' +
+    'FROM Cards ' +
+      'INNER JOIN PrimaryWeapons ON Cards.Slot1 = PrimaryWeapons.WeaponID ' +
+      'INNER JOIN SecondaryWeapons ON Cards.Slot2 = SecondaryWeapons.WeaponID ' +
+      'INNER JOIN MeleeWeapons ON Cards.Slot3 = MeleeWeapons.WeaponID ' +
+    'WHERE Slot1 == \"' + req.body.gun + "\""
+    ';'
   }
 
   console.log("Statement: " + statement)

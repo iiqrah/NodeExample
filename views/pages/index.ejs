@@ -14,7 +14,7 @@
                 <form method="post" action="/weapon_search">
                   
                   <h4>Gun</h4>
-                  <input type="radio" name="gun" value="any"> Any<br>
+                  <input type="radio" name="gun" value="any" checked="checked"> Any<br>
                   <input type="radio" name="gun" value="CR"> Crotzni<br>
                   <input type="radio" name="gun" value="SM"> SMG-9<br>
                   <input type="radio" name="gun" value="BL"> Blishlok
@@ -46,9 +46,9 @@
                         <th scope="row"> <%= i+1 %> </th>
                         <td><%= data[i].Generation %></td>
                         <td> <%= data[i].Slot1 + data[i].Slot2 + data[i].Slot3 %> </td>
-                        <td> <%= data[i].Slot1 %> </td>
-                        <td> <%= data[i].Slot2 %> </td>
-                        <td> <%= data[i].Slot3 %> </td>
+                        <td> <%= data[i].PrimaryName %> </td>
+                        <td> <%= data[i].SecondaryName %> </td>
+                        <td> <%= data[i].MeleeName %> </td>
                       </tr>
                       <% } %>
                     </tbody>
