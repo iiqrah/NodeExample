@@ -31,12 +31,16 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope = "col">#</th>
-                        <th scope="col">Generation</th>
-                        <th scope="col">Card code</th>
-                        <th scope="col">Primary weapon</th>
-                        <th scope="col">Secondary weapon</th>
-                        <th scope="col">Melee weapon</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Merc</th>
+                        <th scope="col">Gen</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Primary</th>
+                        <th scope="col">Secondary</th>
+                        <th scope="col">Melee</th>
+                        <th scope="col">Augment 1</th>
+                        <th scope="col">Augment 2</th>
+                        <th scope="col">Augment 3</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -44,11 +48,15 @@
                       <% for (var i = 0; i < data.length; i++) { %>
                       <tr>
                         <th scope="row"> <%= i+1 %> </th>
+                        <td><%= data[i].Merc %></td>
                         <td><%= data[i].Generation %></td>
-                        <td> <%= data[i].Slot1 + data[i].Slot2 + data[i].Slot3 %> </td>
-                        <td> <%= data[i].PrimaryName %> </td>
-                        <td> <%= data[i].SecondaryName %> </td>
-                        <td> <%= data[i].MeleeName %> </td>
+                        <td><%= data[i].Slot1 + data[i].Slot2 + data[i].Slot3 %> </td>
+                        <td><%= data[i].PrimaryName %> </td>
+                        <td><%= data[i].SecondaryName %> </td>
+                        <td><%= data[i].MeleeName %> </td>
+                        <td><%= data[i].Augment1 %> </td>
+                        <td><%= data[i].Augment2 %> </td>
+                        <td><%= data[i].Augment3 %> </td>
                       </tr>
                       <% } %>
                     </tbody>

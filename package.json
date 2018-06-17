@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "start": "node index.js",
-    "startDB": "ruby make.rb && node index.js"
+    "stop": "ruby make.rb && node index.js"
   },
   "repository": {
     "type": "git",

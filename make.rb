@@ -39,12 +39,35 @@ def create_tables(db)
         "Slot3 integer," +
         "Generation integer," +
         "MercID integer,"+
+        "Augment1 integer,"+
+        "Augment2 integer,"+
+        "Augment3 integer,"+
         "FOREIGN KEY (Slot1) REFERENCES PrimaryWeapons (WeaponID),"+
         "FOREIGN KEY (Slot2) REFERENCES SecondaryWeapons(WeaponID),"+
         "FOREIGN KEY (Slot3) REFERENCES MeleeWeapons (WeaponID),"+
         "FOREIGN KEY (MercID) REFERENCES Mercs(MercID),"+
+        "FOREIGN KEY (Augment1) REFERENCES Augments(AugmentID)," +
+        "FOREIGN KEY (Augment2) REFERENCES Augments(AugmentID)," +
+        "FOREIGN KEY (Augment3) REFERENCES Augments(AugmentID)," +
         "PRIMARY KEY (Slot1, Slot2, Slot3, Generation, MercID));"
         )
+
+db.execute("CREATE TABLE IF NOT EXISTS Augments1 (" +
+        "AugmentID integer PRIMARY KEY," +
+        "Name varchar(15)," +
+        "Description varchar(60));"
+)
+
+db.execute("CREATE TABLE IF NOT EXISTS Augments2 (" +
+    "AugmentID integer PRIMARY KEY," +
+    "Name varchar(15)," +
+    "Description varchar(60));"
+)
+db.execute("CREATE TABLE IF NOT EXISTS Augments3 (" +
+"AugmentID integer PRIMARY KEY," +
+"Name varchar(15)," +
+"Description varchar(60));"
+)
        puts("Tables created")
 end
 
@@ -151,37 +174,175 @@ def insert_data(db)
            "(22, \"Redeye\", \"Recon\", 120, 400)," +
            "(23, \"Vassili\", \"Recon\", 110, 420);")
 
+    db.execute("INSERT INTO Augments1 (\"AugmentID\", \"Name\", \"Description\")" +
+               "VALUES" + 
+               "(1, \"Ammo Reach\", \"25% increase to ammo station radius\")," +
+               "(2, \"Big Ears \", \"Enemy footsteps and other appropriate noises are 50% \")," +
+               "(3, \"Bigger Blast\", \"10% increase to blast radius to AoE weapons. \")," +
+               "(4, \"Bomb Squad \", \"Makes enemy deployables, such as Proxmity Mines, more visible. \")," +
+               "(5, \"Chopper\", \"15% increase to melee damage.\")," +
+               "(6, \"Cool\", \"Doubles the time it takes Mounted MGs to overheat.\")," +
+               "(7, \"Double Time\", \"Allows you to reload whilst sprinting\")," +
+               "(8, \"Drilled\", \"20% reduction to reload time\")," +
+               "(9, \"Enigma\", \"Reduced duration of being spotted by 60%.\")," +
+               "(10, \"Explodydendron\", \"10% increase to blast radius to AoE abilities\")," +
+               "(11, \"Extra Ammo\", \"Increase the max number of ammo packs by one\")," +
+               "(12, \"Extra Supplies\", \"20% cooldown reduction to support abilities\")," +
+               "(13, \"Extender\", \"Extends the size of the shield by 25% on turtle and 20% on guardian\")," +
+               "(14, \"Fail Safe\", \"Reduces the effect taken from your own explosives by 30%\")," +
+               "(15, \"Flying Pig\", \"Increases Long Jump distance by 10% and removes falling damage\")," +
+               "(16, \"Focus\", \"Reduces Flinching when hit while iron sighting or scoped by 30%\")," +
+               "(17, \"Get up\", \"30% increase to health given on revive\")," +
+               "(18, \"Guardian Angel\", \"Receive an audio warning whenever a nearby enemy air support is a danger to you and 20% reduced damage from air support abilities\")," +
+               "(19, \"Healing Reach\", \"15% increase to size of healing radius\")," +
+               "(20, \"Ice Cold\", \"40% increase in time until overheating\")," +
+               "(21, \"Lock on\", \"Turrets, Mines and other automated defences react 30% more quickly\")," +
+               "(22, \"Looter\", \"Killing an enemy Fire Support Merc will drop a small Ammo Pack, killing an enemy Medic will drop a small Health Pack\")," +
+               "(23, \"Mechanic\", \"Improves any repair tools and disarm rates by 20%\")," +
+               "(24, \"Nitros\", \"50% increase to barrel acceleration\")," +
+               "(25, \"Pineapple Juggler\", \"Allows you to melee hit back mid-air grenades and other projectiles\")," +
+               "(26, \"Potent Packs\", \"20% increase to health regen rate given by healing abilities\")," +
+               "(27, \"Quick Draw\", \"30% faster weapon/item switching\")," +
+               "(28, \"Quick Charge\", \"10% increase to round charge rate\")," +
+               "(29, \"Quick Eye\", \"35% faster movement speed and raise/lower times when Iron Sighting\")," +
+               "(30, \"Quick Slash\", \"Increases melee slash speed by 15%\")," +
+               "(31, \"Recharge\", \"10% reduction to ability cooldown\")," +
+               "(32, \"Sneaky\", \"Reduces the amount of sound you generate when running by 50%\")," +
+               "(33, \"Spares\", \"Increases the maximum number of magazines that can be carried by 1\")," +
+               "(34, \"Spotter\", \"20% increase to the detection radius\")," +
+               "(35, \"Springy\", \"Reduces jumping and Long Jump penalties by 35%\")," +
+               "(36, \"Steady\", \"22% Increase to deployables health\")," +
+               "(37, \"Tough\", \"Reduces the delay untill health regen starts by 66%\")," +
+               "(38, \"Try Hard\", \"Gain 10HP for each death you suffer without getting a kill, up to a maximum of 30HP\")," +
+               "(39, \"Undercover\", \"10% increase to ability duration\")," +
+               "(40, \"Unshakeable\", \"Reduces the damage you take from explosives by 15%\")," +
+               "(41, \"Untrackable\", \"Turrets, Mines and other automated defenses react 35% more slowly to your presence\")"
+               
+        )
+
+        db.execute("INSERT INTO Augments2 (\"AugmentID\", \"Name\", \"Description\")" +
+               "VALUES" + 
+               "(1, \"Ammo Reach\", \"25% increase to ammo station radius\")," +
+               "(2, \"Big Ears \", \"Enemy footsteps and other appropriate noises are 50% \")," +
+               "(3, \"Bigger Blast\", \"10% increase to blast radius to AoE weapons. \")," +
+               "(4, \"Bomb Squad \", \"Makes enemy deployables, such as Proxmity Mines, more visible. \")," +
+               "(5, \"Chopper\", \"15% increase to melee damage.\")," +
+               "(6, \"Cool\", \"Doubles the time it takes Mounted MGs to overheat.\")," +
+               "(7, \"Double Time\", \"Allows you to reload whilst sprinting\")," +
+               "(8, \"Drilled\", \"20% reduction to reload time\")," +
+               "(9, \"Enigma\", \"Reduced duration of being spotted by 60%.\")," +
+               "(10, \"Explodydendron\", \"10% increase to blast radius to AoE abilities\")," +
+               "(11, \"Extra Ammo\", \"Increase the max number of ammo packs by one\")," +
+               "(12, \"Extra Supplies\", \"20% cooldown reduction to support abilities\")," +
+               "(13, \"Extender\", \"Extends the size of the shield by 25% on turtle and 20% on guardian\")," +
+               "(14, \"Fail Safe\", \"Reduces the effect taken from your own explosives by 30%\")," +
+               "(15, \"Flying Pig\", \"Increases Long Jump distance by 10% and removes falling damage\")," +
+               "(16, \"Focus\", \"Reduces Flinching when hit while iron sighting or scoped by 30%\")," +
+               "(17, \"Get up\", \"30% increase to health given on revive\")," +
+               "(18, \"Guardian Angel\", \"Receive an audio warning whenever a nearby enemy air support is a danger to you and 20% reduced damage from air support abilities\")," +
+               "(19, \"Healing Reach\", \"15% increase to size of healing radius\")," +
+               "(20, \"Ice Cold\", \"40% increase in time until overheating\")," +
+               "(21, \"Lock on\", \"Turrets, Mines and other automated defences react 30% more quickly\")," +
+               "(22, \"Looter\", \"Killing an enemy Fire Support Merc will drop a small Ammo Pack, killing an enemy Medic will drop a small Health Pack\")," +
+               "(23, \"Mechanic\", \"Improves any repair tools and disarm rates by 20%\")," +
+               "(24, \"Nitros\", \"50% increase to barrel acceleration\")," +
+               "(25, \"Pineapple Juggler\", \"Allows you to melee hit back mid-air grenades and other projectiles\")," +
+               "(26, \"Potent Packs\", \"20% increase to health regen rate given by healing abilities\")," +
+               "(27, \"Quick Draw\", \"30% faster weapon/item switching\")," +
+               "(28, \"Quick Charge\", \"10% increase to round charge rate\")," +
+               "(29, \"Quick Eye\", \"35% faster movement speed and raise/lower times when Iron Sighting\")," +
+               "(30, \"Quick Slash\", \"Increases melee slash speed by 15%\")," +
+               "(31, \"Recharge\", \"10% reduction to ability cooldown\")," +
+               "(32, \"Sneaky\", \"Reduces the amount of sound you generate when running by 50%\")," +
+               "(33, \"Spares\", \"Increases the maximum number of magazines that can be carried by 1\")," +
+               "(34, \"Spotter\", \"20% increase to the detection radius\")," +
+               "(35, \"Springy\", \"Reduces jumping and Long Jump penalties by 35%\")," +
+               "(36, \"Steady\", \"22% Increase to deployables health\")," +
+               "(37, \"Tough\", \"Reduces the delay untill health regen starts by 66%\")," +
+               "(38, \"Try Hard\", \"Gain 10HP for each death you suffer without getting a kill, up to a maximum of 30HP\")," +
+               "(39, \"Undercover\", \"10% increase to ability duration\")," +
+               "(40, \"Unshakeable\", \"Reduces the damage you take from explosives by 15%\")," +
+               "(41, \"Untrackable\", \"Turrets, Mines and other automated defenses react 35% more slowly to your presence\")"
+               
+        )
+
+        db.execute("INSERT INTO Augments3 (\"AugmentID\", \"Name\", \"Description\")" +
+               "VALUES" + 
+               "(1, \"Ammo Reach\", \"25% increase to ammo station radius\")," +
+               "(2, \"Big Ears \", \"Enemy footsteps and other appropriate noises are 50% \")," +
+               "(3, \"Bigger Blast\", \"10% increase to blast radius to AoE weapons. \")," +
+               "(4, \"Bomb Squad \", \"Makes enemy deployables, such as Proxmity Mines, more visible. \")," +
+               "(5, \"Chopper\", \"15% increase to melee damage.\")," +
+               "(6, \"Cool\", \"Doubles the time it takes Mounted MGs to overheat.\")," +
+               "(7, \"Double Time\", \"Allows you to reload whilst sprinting\")," +
+               "(8, \"Drilled\", \"20% reduction to reload time\")," +
+               "(9, \"Enigma\", \"Reduced duration of being spotted by 60%.\")," +
+               "(10, \"Explodydendron\", \"10% increase to blast radius to AoE abilities\")," +
+               "(11, \"Extra Ammo\", \"Increase the max number of ammo packs by one\")," +
+               "(12, \"Extra Supplies\", \"20% cooldown reduction to support abilities\")," +
+               "(13, \"Extender\", \"Extends the size of the shield by 25% on turtle and 20% on guardian\")," +
+               "(14, \"Fail Safe\", \"Reduces the effect taken from your own explosives by 30%\")," +
+               "(15, \"Flying Pig\", \"Increases Long Jump distance by 10% and removes falling damage\")," +
+               "(16, \"Focus\", \"Reduces Flinching when hit while iron sighting or scoped by 30%\")," +
+               "(17, \"Get up\", \"30% increase to health given on revive\")," +
+               "(18, \"Guardian Angel\", \"Receive an audio warning whenever a nearby enemy air support is a danger to you and 20% reduced damage from air support abilities\")," +
+               "(19, \"Healing Reach\", \"15% increase to size of healing radius\")," +
+               "(20, \"Ice Cold\", \"40% increase in time until overheating\")," +
+               "(21, \"Lock on\", \"Turrets, Mines and other automated defences react 30% more quickly\")," +
+               "(22, \"Looter\", \"Killing an enemy Fire Support Merc will drop a small Ammo Pack, killing an enemy Medic will drop a small Health Pack\")," +
+               "(23, \"Mechanic\", \"Improves any repair tools and disarm rates by 20%\")," +
+               "(24, \"Nitros\", \"50% increase to barrel acceleration\")," +
+               "(25, \"Pineapple Juggler\", \"Allows you to melee hit back mid-air grenades and other projectiles\")," +
+               "(26, \"Potent Packs\", \"20% increase to health regen rate given by healing abilities\")," +
+               "(27, \"Quick Draw\", \"30% faster weapon/item switching\")," +
+               "(28, \"Quick Charge\", \"10% increase to round charge rate\")," +
+               "(29, \"Quick Eye\", \"35% faster movement speed and raise/lower times when Iron Sighting\")," +
+               "(30, \"Quick Slash\", \"Increases melee slash speed by 15%\")," +
+               "(31, \"Recharge\", \"10% reduction to ability cooldown\")," +
+               "(32, \"Sneaky\", \"Reduces the amount of sound you generate when running by 50%\")," +
+               "(33, \"Spares\", \"Increases the maximum number of magazines that can be carried by 1\")," +
+               "(34, \"Spotter\", \"20% increase to the detection radius\")," +
+               "(35, \"Springy\", \"Reduces jumping and Long Jump penalties by 35%\")," +
+               "(36, \"Steady\", \"22% Increase to deployables health\")," +
+               "(37, \"Tough\", \"Reduces the delay untill health regen starts by 66%\")," +
+               "(38, \"Try Hard\", \"Gain 10HP for each death you suffer without getting a kill, up to a maximum of 30HP\")," +
+               "(39, \"Undercover\", \"10% increase to ability duration\")," +
+               "(40, \"Unshakeable\", \"Reduces the damage you take from explosives by 15%\")," +
+               "(41, \"Untrackable\", \"Turrets, Mines and other automated defenses react 35% more slowly to your presence\")"
+               
+        )
+
            puts("Basic data inserted")
 end
 
 
 
 def insert_sawbonez(db, i)
-    db.execute("INSERT INTO Cards (\"Slot1\", \"Slot2\", \"Slot3\", \"Generation\", \"MercID\")" +
+    db.execute("INSERT INTO Cards (\"Slot1\", \"Slot2\", \"Slot3\", \"Generation\", \"MercID\", \"Augment1\", \"Augment2\", \"Augment3\")" +
                "VALUES" +
-               "(\"SM\", 7, 2, 1, #{i})," +
-               "(\"SM\", 8, 2, 1, #{i})," +
-               "(\"SM\", 4, 1, 1, #{i})," +
+               "(\"SM\", 7, 2, 1, #{i}, 17, 12, 5)," +
+               "(\"SM\", 8, 1, 1, #{i}, 27, 8, 16)," +
+               "(\"SM\", 4, 1, 1, #{i}, 17, 6, 37)," +
 
-               "(\"CR\", 7, 3, 1, #{i})," +
-               "(\"CR\", 4, 2, 1, #{i})," +
-               "(\"CR\", 8, 1, 1, #{i})," +
+               "(\"CR\", 7, 3, 1, #{i}, 26, 23, 17)," +
+               "(\"CR\", 4, 2, 1, #{i}, 26, 16, 8)," +
+               "(\"CR\", 8, 1, 1, #{i}, 12, 16, 5)," +
                
-               "(\"BL\", 7, 1, 1, #{i})," +
-               "(\"BL\", 4, 3, 1, #{i})," +
-               "(\"BL\", 8, 2, 1, #{i})," +
+               "(\"BL\", 7, 1, 1, #{i}, 40, 26, 33)," +
+               "(\"BL\", 4, 3, 1, #{i}, 23, 6, 8)," +
+               "(\"BL\", 8, 2, 1, #{i}, 23, 37, 27)," +
                
-               "(\"SM\", 7, 2, 2, #{i})," +
-               "(\"SM\", 8, 3, 2, #{i})," +
-               "(\"SM\", 4, 1, 2, #{i})," +
+               "(\"SM\", 7, 2, 2, #{i}, 17, 12, 41)," +
+               "(\"SM\", 8, 3, 2, #{i}, 27, 40, 16)," +
+               "(\"SM\", 4, 1, 2, #{i}, 26, 8, 4)," +
 
-               "(\"CR\", 7, 3, 2, #{i})," +
-               "(\"CR\", 4, 2, 2, #{i})," +
-               "(\"CR\", 8, 1, 2, #{i})," +
+               "(\"CR\", 7, 3, 2, #{i}, 26, 23, 17)," +
+               "(\"CR\", 4, 2, 2, #{i}, 33, 27, 8)," +
+               "(\"CR\", 8, 1, 2, #{i}, 12, 4, 40)," +
                
-               "(\"BL\", 7, 1, 2, #{i})," +
-               "(\"BL\", 4, 3, 2, #{i})," +
-               "(\"BL\", 8, 2, 2, #{i});"
+               "(\"BL\", 7, 1, 2, #{i}, 12, 26, 33)," +
+               "(\"BL\", 4, 3, 2, #{i}, 23, 40, 8)," +
+               "(\"BL\", 8, 2, 2, #{i}, 7, 17, 27);"
     
     )
 end
