@@ -26,8 +26,9 @@ app.post('/weapon_search', function (req,res) {
 
   if (req.body.gun === "any") {
     statement = 
-    'SELECT Slot2, SecondaryWeapons.WeaponName, WeaponID FROM ' + 
+    'SELECT PrimaryWeapons.WeaponName, SecondaryWeapons.WeaponName, WeaponID FROM ' + 
     'Cards ' +
+    'INNER JOIN PrimaryWeapons ON Cards.Slot1 = PrimaryWeapons.WeaponID' +
     'INNER JOIN SecondaryWeapons ON Cards.Slot2 = SecondaryWeapons.WeaponID' +
     // '' +
     // '' +
