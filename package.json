@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "ruby make.rb && node index.js"
+    "start": "node index.js",
+    "startDB": "ruby make.rb && node index.js"
   },
   "repository": {
     "type": "git",
