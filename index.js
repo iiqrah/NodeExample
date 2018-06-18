@@ -5,6 +5,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const path = require('path')
 const bodyParser = require('body-parser')
+var http = require("http");
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db/dev.db');
@@ -15,6 +16,11 @@ app
 .use(bodyParser.json())
 .set('views', path.join(__dirname, 'views'))
 .set('view engine', 'ejs');
+
+//Stay awake by pinging app every 5 mins
+setInterval(function() {
+    http.get("http://db-db.herokuapp.com");
+}, 300000);
 
 function prepareStatement(options){
   var filters = false
