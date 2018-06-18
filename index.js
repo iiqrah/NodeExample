@@ -29,9 +29,9 @@ function prepareStatement(options){
   'INNER JOIN SecondaryWeapons ON Cards.Slot2 = SecondaryWeapons.WeaponID ' +
   'INNER JOIN MeleeWeapons ON Cards.Slot3 = MeleeWeapons.WeaponID ' +
   'INNER JOIN Mercs ON Cards.MercID = Mercs.MercID ' +
-  'INNER JOIN Augments1 ON Cards.Augment1 = Augments1.AugmentID ' +
-  'INNER JOIN Augments2 ON Cards.Augment2 = Augments2.AugmentID ' +
-  'INNER JOIN Augments3 ON Cards.Augment3 = Augments3.AugmentID '
+  'INNER JOIN Augments1 AS a1 ON Cards.Augment1 = a1.AugmentID ' +
+  'INNER JOIN Augments1 AS a2 ON Cards.Augment2 = a2.AugmentID ' +
+  'INNER JOIN Augments1 AS a3 ON Cards.Augment3 = a3.AugmentID '
 
   if (options) {
     statement = statement + 'WHERE ';
