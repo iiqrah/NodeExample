@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+    
+    <body>
+        <% include ../partials/navbar.ejs %>
+
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-1">
+                <h3>Filters</h3>
+                <form method="post" action="/weapon_search">
+                  <input type="submit" value="Search">
+
+                  <h4>Primary</h4>
+                  <h6>
+                  <input type="radio" name="primary" value="any" checked="checked"> Any<br>
+                  <input type="radio" name="primary" value="HU"> Hurtsall 2K<br>
+                  <input type="radio" name="primary" value="M"> M4A1<br>
+                  <input type="radio" name="primary" value="SH"> SHAR-C<br>
+                  <input type="radio" name="primary" value="T"> Timik-47<br>
+
+                  <input type="radio" name="primary" value="K"> K-121<br>
+                  <input type="radio" name="primary" value="MA"> MK46<br>
+
+                  <input type="radio" name="primary" value="B"> BR-16<br>
+                  <input type="radio" name="primary" value="S"> Stark AR<br>
+
+                  <input type="radio" name="primary" value="BL"> Blishlok<br>
+                  <input type="radio" name="primary" value="CR"> Crotzni<br>
+                  <input type="radio" name="primary" value="KE"> Hochfir<br>
+                  <input type="radio" name="primary" value="C"> KEK-10<br>
+                  <input type="radio" name="primary" value="SM"> SMG-9<br>
+
+                  <input type="radio" name="primary" value="A"> Ahnuhld-12<br>
+                  <input type="radio" name="primary" value="H"> Hollunds 880<br>
+                  <input type="radio" name="primary" value="R"> Remburg 7<br>
+
+                  <input type="radio" name="primary" value="D"> Dreiss AR<br>
+                  <input type="radio" name="primary" value="G"> Grandeur SR<br>
+                  <input type="radio" name="primary" value="P"> PDP-70<br>
+                  <input type="radio" name="primary" value="F"> Fel-ix<br>
+                  <input type="radio" name="primary" value="MO"> MOA SNPR-1<br>
+                  </h6>
+              </div>
+              <div class="col-md-1">
+                  <h4>Secondary</h4>
+                  <h6>
+                  <input type="radio" name="secondary" value="any" checked="checked"> Any<br>
+                  <input type="radio" name="secondary" value="1"> MP400<br>
+                  <input type="radio" name="secondary" value="2"> Tolen MP<br>
+                  <input type="radio" name="secondary" value="3"> Empire-9<br>
+                  <input type="radio" name="secondary" value="99"> Ryburn MP<br>
+                  <input type="radio" name="secondary" value="4"> M9<br>
+                  <input type="radio" name="secondary" value="5"> DE .50<br>
+                  <input type="radio" name="secondary" value="6"> Simeon .357<br>
+                  <input type="radio" name="secondary" value="7"> Caulden<br>
+                  <input type="radio" name="secondary" value="8"> Selbstadt .40<br>
+                  <input type="radio" name="secondary" value="9"> Smjüth & Whetsman .40<br>
+                  <input type="radio" name="secondary" value="10"> Hoigat .224<br>
+                  <input type="radio" name="secondary" value="11"> Ryburn MP<br>
+                  </h6>
+
+                  <h4>Melee</h4>
+                  <h6>
+                  <input type="radio" name="melee" value="any" checked="checked"> Any<br>
+                  <input type="radio" name="melee" value="1"> Beckhill Combat Knife<br>
+                  <input type="radio" name="melee" value="2"> Stilnotto Stiletto<br>
+                  <input type="radio" name="melee" value="3"> Cricket Bat<br> 
+                  <input type="radio" name="melee" value="4"> Katana<br>
+                  <input type="radio" name="melee" value="5"> Kukri<br>
+                  <input type="radio" name="melee" value="6"> Tactical Combat Axe<br>
+                  <input type="radio" name="melee" value="99"> Stun Batons<br>
+                  <input type="radio" name="melee" value="7"> Ulu
+                  </h6>
+
+                </form>
+              </div>
+
+              <div class="col-md-10">
+                <h3>Search results</h3>
+                
+                <% if (typeof data !== 'undefined') {%>
+                  
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Merc</th>
+                        <th scope="col">Gen</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Primary</th>
+                        <th scope="col">Secondary</th>
+                        <th scope="col">Melee</th>
+                        <th scope="col">Augment 1</th>
+                        <th scope="col">Augment 2</th>
+                        <th scope="col">Augment 3</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <% for (var i = 0; i < data.length; i++) { %>
+                      <tr>
+                        <th scope="row"> <%= i+1 %> </th>
+                        <td><%= data[i].Merc %></td>
+                        <td><%= data[i].Generation %></td>
+                        <td><%= data[i].Slot1 + data[i].Slot2 + data[i].Slot3 %> </td>
+                        <td><%= data[i].PrimaryName %> </td>
+                        <td><%= data[i].SecondaryName %> </td>
+                        <td><%= data[i].MeleeName %> </td>
+                        <td><%= data[i].Augment1 %> </td>
+                        <td><%= data[i].Augment2 %> </td>
+                        <td><%= data[i].Augment3 %> </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+
+
+
+                <% } %>
+              </div>
+            </div>
+          </div>
+
+    <br>
+    <input type="image" src="https://cdn.discordapp.com/attachments/122446271804997634/457639888888528896/big_cube.png" />
+    </body>
+</html>
