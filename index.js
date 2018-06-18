@@ -54,6 +54,10 @@ function prepareStatement(options){
       filters = true;
       statement = statement + 'Slot3 == ' + options.melee + " AND "
     }
+    if (options.gen && options.gen !== "any") {
+      filters = true;
+      statement = statement + 'Generation == ' + options.gen + " AND "
+    }
   }
   
   //Cleanup based on if there is a WHERE or an AND left
@@ -99,7 +103,8 @@ app.post('/weapon_search', function (req,res) {
   statement = prepareStatement({
     primary: req.body.primary,
     secondary: req.body.secondary,
-    melee: req.body.melee
+    melee: req.body.melee,
+    gen: req.body.gen
   });
 
   console.log("Statement: " + statement)
