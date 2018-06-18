@@ -17,6 +17,7 @@ app
 .set('view engine', 'ejs');
 
 function prepareStatement(options){
+  var filters = false
   var statement = 
 'SELECT ' +
   'PrimaryWeapons.WeaponName AS PrimaryName, ' + 
@@ -29,18 +30,24 @@ function prepareStatement(options){
   'INNER JOIN SecondaryWeapons ON Cards.Slot2 = SecondaryWeapons.WeaponID ' +
   'INNER JOIN MeleeWeapons ON Cards.Slot3 = MeleeWeapons.WeaponID ' +
   'INNER JOIN Mercs ON Cards.MercID = Mercs.MercID ' +
-  'INNER JOIN Augments1 AS a1 ON Cards.Augment1 = a1.AugmentID ' +
-  'INNER JOIN Augments1 AS a2 ON Cards.Augment2 = a2.AugmentID ' +
-  'INNER JOIN Augments1 AS a3 ON Cards.Augment3 = a3.AugmentID '
+  'INNER JOIN Augments1 ON Cards.Augment1 = Augments1.AugmentID ' +
+  'INNER JOIN Augments2 ON Cards.Augment2 = Augments2.AugmentID ' +
+  'INNER JOIN Augments3 ON Cards.Augment3 = Augments3.AugmentID '
 
-  if (options) {
-    statement = statement + 'WHERE ';
-    if (options.gun) {
-      statement = statement + 'Slot1 == \"' + options.gun + "\" AND "
-    }
+  statement = statement + 'WHERE ';
+  if (options.gun && options.gun !== "any") {
+    filters = true;
+    statement = statement + 'Slot1 == \"' + options.gun + "\" AND "
+  }
+  
+  //Cleanup based on if there is a WHERE or an AND left over
+  if (filters) {
+    statement = statement.slice(0,-5)
+  } else {
+    statement = statement.slice(0,-7)
   }
 
-  statement = statement.slice(0,-5)
+  
   statement = statement + ';'
   return statement;
 }
@@ -53,11 +60,7 @@ app.post('/weapon_search', function (req,res) {
   var statement = ""
   var results = []
 
-  if (req.body.gun === "any") {
-    statement = prepareStatement();
-  } else {
-    statement = prepareStatement({gun: req.body.gun});
-  }
+  statement = prepareStatement({gun: req.body.gun});
 
   console.log("Statement: " + statement)
 
