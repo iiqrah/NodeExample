@@ -35,12 +35,20 @@ function prepareStatement(options){
   'INNER JOIN Augments3 ON Cards.Augment3 = Augments3.AugmentID '
 
   statement = statement + 'WHERE ';
-  if (options.gun && options.gun !== "any") {
+  if (options.primary && options.primary !== "any") {
     filters = true;
-    statement = statement + 'Slot1 == \"' + options.gun + "\" AND "
+    statement = statement + 'Slot1 == \"' + options.primary + "\" AND "
+  }
+  if (options.secondary && options.secondary !== "any") {
+    filters = true;
+    statement = statement + 'Slot2 == ' + options.secondary + " AND "
+  }
+  if (options.melee && options.melee !== "any") {
+    filters = true;
+    statement = statement + 'Slot3 == ' + options.melee + " AND "
   }
   
-  //Cleanup based on if there is a WHERE or an AND left over
+  //Cleanup based on if there is a WHERE or an AND left
   if (filters) {
     statement = statement.slice(0,-5)
   } else {
@@ -60,7 +68,11 @@ app.post('/weapon_search', function (req,res) {
   var statement = ""
   var results = []
 
-  statement = prepareStatement({gun: req.body.gun});
+  statement = prepareStatement({
+    primary: req.body.primary,
+    secondary: req.body.secondary,
+    melee: req.body.melee
+  });
 
   console.log("Statement: " + statement)
 
