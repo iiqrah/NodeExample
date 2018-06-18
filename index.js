@@ -41,17 +41,19 @@ function prepareStatement(options){
   'INNER JOIN Augments3 ON Cards.Augment3 = Augments3.AugmentID '
 
   statement = statement + 'WHERE ';
-  if (options.primary && options.primary !== "any") {
-    filters = true;
-    statement = statement + 'Slot1 == \"' + options.primary + "\" AND "
-  }
-  if (options.secondary && options.secondary !== "any") {
-    filters = true;
-    statement = statement + 'Slot2 == ' + options.secondary + " AND "
-  }
-  if (options.melee && options.melee !== "any") {
-    filters = true;
-    statement = statement + 'Slot3 == ' + options.melee + " AND "
+  if (options) {
+    if (options.primary && options.primary !== "any") {
+      filters = true;
+      statement = statement + 'Slot1 == \"' + options.primary + "\" AND "
+    }
+    if (options.secondary && options.secondary !== "any") {
+      filters = true;
+      statement = statement + 'Slot2 == ' + options.secondary + " AND "
+    }
+    if (options.melee && options.melee !== "any") {
+      filters = true;
+      statement = statement + 'Slot3 == ' + options.melee + " AND "
+    }
   }
   
   //Cleanup based on if there is a WHERE or an AND left
@@ -67,7 +69,27 @@ function prepareStatement(options){
 }
 
 app.get('/', function (req, res) {
-  res.render('pages/cardSearch');
+  var results = []
+  console.log("Statement: " + prepareStatement());
+  db.each(prepareStatement(), function (err, row) {
+    if (err) {
+      console.log("Error: " + err)
+    } else {
+      console.log(row)
+      //Exception for ryburn
+      if (row.Slot1 === 99) {
+        row.Slot1 = 4
+      }
+      //Exception for Stun Batons
+      if (row.Slot3 === 99) {
+        row.Slot3 = 6
+      }
+
+      results.push(row)
+    }
+  }, function (err, row) {
+    res.render('pages/cardSearch', {data: results});
+  })
 })
 
 app.post('/weapon_search', function (req,res) {
