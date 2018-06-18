@@ -67,7 +67,7 @@ function prepareStatement(options){
 }
 
 app.get('/', function (req, res) {
-  res.render('pages/index');
+  res.render('pages/cardSearch');
 })
 
 app.post('/weapon_search', function (req,res) {
@@ -87,10 +87,19 @@ app.post('/weapon_search', function (req,res) {
       console.log("Error: " + err)
     } else {
       console.log(row)
+      //Exception for ryburn
+      if (row.Slot1 === 99) {
+        row.Slot1 = 4
+      }
+      //Exception for Stun Batons
+      if (row.Slot3 === 99) {
+        row.Slot3 = 6
+      }
+
       results.push(row)
     }
   }, function (err, row) {
-    res.render('pages/index', {data: results});
+    res.render('pages/cardSearch', {data: results});
   })
    
 })
