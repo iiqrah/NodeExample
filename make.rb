@@ -64,9 +64,9 @@ db.execute("CREATE TABLE IF NOT EXISTS Augments2 (" +
     "Description varchar(60));"
 )
 db.execute("CREATE TABLE IF NOT EXISTS Augments3 (" +
-"AugmentID integer PRIMARY KEY," +
-"Name varchar(15)," +
-"Description varchar(60));"
+           "AugmentID integer PRIMARY KEY," +
+           "Name varchar(15)," +
+           "Description varchar(60));"
 )
        puts("Tables created")
 end
@@ -80,7 +80,8 @@ def insert_data(db)
             "(3, \"Burst Rifle\")," +
             "(4, \"SMG\")," +
             "(5, \"Shotgun\")," +
-            "(6, \"Rifle & Sniper\");")
+            "(6, \"Rifle & Sniper\")," +
+            "(7, \"Machine Pistol\");")
 
     db.execute("INSERT INTO PrimaryWeapons (\"WeaponID\",\"WeaponName\", \"TypeID\")" +
            "VALUES" +
@@ -109,7 +110,14 @@ def insert_data(db)
            "( \"G\", \"Grandeur SR\", 6)," +
            "( \"P\", \"PDP-70\", 6)," +
            "( \"F\", \"Fel-ix\", 6)," +
-           "( \"MO\", \"MOA SNPR-1\", 6);")
+           "( \"MO\", \"MOA SNPR-1\", 6),"  +
+           
+           "( \"1\", \"MP400\", 7)," +
+           "( \"2\", \"Tolen MP\", 7)," +
+           "( \"3\", \"Empire-9\", 7)," +
+           "( \"4\", \"Ryburn MP\", 7)"  +
+           
+           ";")
 
     # Note: The M9 and the Ryburn MP both use 4 for
     #       weapon card codes. In the database the ryburn is 99
@@ -401,6 +409,71 @@ def insert_sawbonez(db, i)
     )
 end
 
+def insert_phoenix(db, i)
+    db.execute("INSERT INTO Cards (\"Slot1\", \"Slot2\", \"Slot3\", \"Generation\", \"MercID\", \"Augment1\", \"Augment2\", \"Augment3\")" +
+               "VALUES" +
+               #Gen1
+               "(\"CR\", 4, 3, 1, #{i}, 17, 6, 8)," +
+               "(\"CR\", 7, 1, 1, #{i}, 4, 26, 27)," +
+               "(\"CR\", 8, 2, 1, #{i}, 23, 2, 26)," +
+
+               "(\"KE\", 4, 2, 1, #{i}, 41, 19, 6)," +
+               "(\"KE\", 7, 3, 1, #{i}, 8, 27, 17)," +
+               "(\"KE\", 8, 1, 1, #{i}, 6, 12, 26)," +
+               
+               "(\"C\", 4, 1, 1, #{i}, 27, 6, 12)," +
+               "(\"C\", 7, 2, 1, #{i}, 12, 23, 4)," +
+               "(\"C\", 8, 3, 1, #{i}, 19, 5, 8)," +
+               
+               #Gen2
+               "(\"C\", 4, 1, 2, #{i}, 27, 7, 26)," +
+               "(\"C\", 7, 2, 2, #{i}, 12, 23, 4)," +
+               "(\"C\", 8, 3, 2, #{i}, 19, 17, 9)," +
+
+               "(\"CR\", 4, 3, 2, #{i}, 17, 7, 33)," +
+               "(\"CR\", 8, 1, 2, #{i}, 18, 19, 26)," +
+               "(\"CR\", 7, 2, 2, #{i}, 12, 23, 4)," +
+               
+               "(\"KE\", 4, 2, 2, #{i}, 23, 19, 40)," +
+               "(\"KE\", 7, 3, 2, #{i}, 8, 27, 17)," +
+               "(\"KE\", 8, 1, 2, #{i}, 41, 12, 26);"
+    
+    )
+end
+
+def insert_sparks(db, i)
+    db.execute("INSERT INTO Cards (\"Slot1\", \"Slot2\", \"Slot3\", \"Generation\", \"MercID\", \"Augment1\", \"Augment2\", \"Augment3\")" +
+               "VALUES" +
+               #Gen1
+               "(\"1\", 4, 3, 1, #{i}, 6, 8, 17)," +
+               "(\"1\", 7, 2, 1, #{i}, 29, 7, 12)," +
+               "(\"1\", 8, 1, 1, #{i}, 15, 27, 35)," +
+
+               "(\"2\", 7, 3, 1, #{i}, 8, 27, 9)," +
+               "(\"2\", 8, 1, 1, #{i}, 26, 28, 6)," +
+               
+               #Sparks actually has 4 gen 1 emp-9 cards, huh.
+               "(\"3\", 4, 3, 1, #{i}, 17, 5, 15)," +
+               "(\"3\", 7, 3, 1, #{i}, 27, 5, 7)," +
+               "(\"3\", 8, 2, 1, #{i}, 12, 26, 32)," +
+               "(\"3\", 8, 3, 1, #{i}, 17, 28, 26)," +
+               
+               #Gen2
+               "(\"1\", 4, 3, 2, #{i}, 28, 16, 17)," +
+               "(\"1\", 7, 2, 2, #{i}, 40, 17, 12)," +
+               "(\"1\", 8, 1, 2, #{i}, 26, 27, 28)," +
+
+               "(\"2\", 4, 1, 2, #{i}, 17, 16, 26)," +
+               "(\"2\", 7, 3, 2, #{i}, 28, 27, 12)," +
+               "(\"2\", 8, 2, 2, #{i}, 40, 28, 17)," +
+               
+               "(\"3\", 4, 2, 2, #{i}, 12, 16, 28)," +
+               "(\"3\", 7, 3, 2, #{i}, 27, 17, 40)," +
+               "(\"3\", 8, 3, 2, #{i}, 17, 28, 26);"
+    
+    )
+end
+
 def insert_nader(db, i)
     db.execute("INSERT INTO Cards (\"Slot1\", \"Slot2\", \"Slot3\", \"Generation\", \"MercID\", \"Augment1\", \"Augment2\", \"Augment3\")" +
                "VALUES" +
@@ -436,8 +509,12 @@ end
 def insert_cards(db)
     insert_aura(db, 1)
     insert_guardian(db, 2)
+    insert_phoenix(db, 3)
     insert_sawbonez(db, 4)
+    insert_sparks(db, 5)
+
     insert_nader(db, 16)
+    
 end
 
 wipe(db)
