@@ -8,12 +8,21 @@
         <% include ../partials/navbar.ejs %>
 
         <div class="container-fluid">
+        <h3>Filters</h3>
             <div class="row">
               <div class="col-md-1">
-                <h3>Filters</h3>
+                
+                
                 <form method="post" action="/weapon_search">
-                  <input type="submit" value="Search">
 
+                <div class="panel panel-default">
+                <div class="panel-body">
+                  <input type="submit" value="Search" class="btn btn-light btn-block">
+                  <button type="reset" value="Reset" class="btn btn-light btn-block">Reset</button>
+                </div></div>
+
+                  <div class="panel panel-default">
+                  <div class="panel-body">
                   <h4>Primary</h4>
                   <h6>
                   <input type="radio" name="primary" value="any" checked="checked"> Any<br>
@@ -44,8 +53,11 @@
                   <input type="radio" name="primary" value="F"> Fel-ix<br>
                   <input type="radio" name="primary" value="MO"> MOA SNPR-1<br>
                   </h6>
-              </div>
+              </div></div></div>
+
               <div class="col-md-1">
+                  <div class="panel panel-default">
+                  <div class="panel-body">
                   <h4>Secondary</h4>
                   <h6>
                   <input type="radio" name="secondary" value="any" checked="checked"> Any<br>
@@ -61,9 +73,12 @@
                   <input type="radio" name="secondary" value="8"> Selbstadt .40<br>
                   <input type="radio" name="secondary" value="9"> Smjüth & Whetsman .40<br>
                   <input type="radio" name="secondary" value="10"> Hoigat .224<br>
-                  <input type="radio" name="secondary" value="11"> Ryburn MP<br>
+                  <input type="radio" name="secondary" value="11"> Arevarov 9<br>
                   </h6>
+                  </div></div>
 
+                  <div class="panel panel-default">
+                  <div class="panel-body">
                   <h4>Melee</h4>
                   <h6>
                   <input type="radio" name="melee" value="any" checked="checked"> Any<br>
@@ -76,13 +91,18 @@
                   <input type="radio" name="melee" value="99"> Stun Batons<br>
                   <input type="radio" name="melee" value="7"> Ulu
                   </h6>
+                  </div>
+                  </div>
 
+                  <div class="panel panel-default">
+                  <div class="panel-body">
                   <h4>Generation</h4>
                   <h6>
                   <input type="radio" name="gen" value="any" checked="checked"> Any<br>
                   <input type="radio" name="gen" value="1"> Generation 1<br>
                   <input type="radio" name="gen" value="2"> Generation 2
                   </h6>
+                  </div></div>
 
                 </form>
               </div>
