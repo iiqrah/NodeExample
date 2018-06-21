@@ -42,6 +42,15 @@ function prepareStatement(options){
 
   statement = statement + 'WHERE ';
   if (options) {
+    console.log("Options: " + JSON.stringify(options));
+
+    if (options.augments) {
+      console.log("\nTrue\n");
+    } else {
+      console.log("\nFALSE\n")
+    }
+
+
     if (options.primary && options.primary !== "any") {
       filters = true;
       statement = statement + 'Slot1 == \"' + options.primary + "\" AND "
@@ -57,6 +66,17 @@ function prepareStatement(options){
     if (options.gen && options.gen !== "any") {
       filters = true;
       statement = statement + 'Generation == ' + options.gen + " AND "
+    }
+    if (options.augments) {
+      filters = true;
+      if (Array.isArray(options.augments)) {
+        
+        options.augments.forEach(function (aug) {
+          statement = statement + '(Augment1 == ' + aug + " OR Augment2 == " + aug + " OR Augment3 == " + aug + ") AND "
+        })
+      } else {
+        statement = statement + '(Augment1 == ' + options.augments + " OR Augment2 == " + options.augments + " OR Augment3 == " + options.augments + ") AND "
+      }
     }
   }
   
@@ -79,7 +99,6 @@ app.get('/', function (req, res) {
     if (err) {
       console.log("Error: " + err)
     } else {
-      console.log(row)
       //Exception for ryburn
       if (row.Slot1 === 99) {
         row.Slot1 = 4
@@ -100,11 +119,13 @@ app.post('/weapon_search', function (req,res) {
   var statement = ""
   var results = []
 
+  console.log("Body: " + JSON.stringify(req.body))
   statement = prepareStatement({
     primary: req.body.primary,
     secondary: req.body.secondary,
     melee: req.body.melee,
-    gen: req.body.gen
+    gen: req.body.gen,
+    augments: req.body.augment
   });
 
   console.log("Statement: " + statement)
@@ -113,7 +134,6 @@ app.post('/weapon_search', function (req,res) {
     if (err) {
       console.log("Error: " + err)
     } else {
-      console.log(row)
       //Exception for ryburn
       if (row.Slot1 === 99) {
         row.Slot1 = 4
