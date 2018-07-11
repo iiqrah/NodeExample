@@ -18,9 +18,9 @@ app
 .set('view engine', 'ejs');
 
 //Stay awake by pinging app every 5 mins
-setInterval(function() {
-    http.get("http://db-db.herokuapp.com");
-}, 300000);
+// setInterval(function() {
+//     http.get("http://db-db.herokuapp.com");
+// }, 300000);
 
 function prepareStatement(options){
   var filters = false
