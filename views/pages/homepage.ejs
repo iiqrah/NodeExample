@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+    
+    <body>
+        <% include ../partials/navbar.ejs %>
+
+        <div class="container-fluid">
+          <h3>Hello</h3>
+              <div class="row">
+              <form method="post" action="/results">
+
+                  <div class="panel panel-default">
+                  <div class="panel-body">
+                    First name: <input type="text" name="fname" class="form-control"><br>
+                    Last name: <input type="text" name="lname" class="form-control"><br>
+                    <input type="submit" value="Submit" class="btn btn-secondary btn-block">
+                    <button type="reset" value="Reset" class="btn btn-secondary btn-block">Reset</button>
+                  </div>
+
+              
+            </div>
+          </div>
+
+    <br>
+    <input type="image" src="https://cdn.discordapp.com/attachments/122446271804997634/457639888888528896/big_cube.png" />
+    </body>
+</html>
